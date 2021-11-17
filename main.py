@@ -8,7 +8,7 @@ counter200 = 0
 counter404 = 0
 maxValue = 2986522
 
-def getDataFromSite(site):
+def getDataFromSport(site):
     response = requests.get(site)
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'lxml')
@@ -21,12 +21,12 @@ def getDataFromSite(site):
     return ''
 
 def main():
-    with open("database.txt", "w") as file:
+    with open("sport.txt", "w") as file:
         counter200 = 0
         counter404 = 0
         timeStart = datetime.datetime.now()
-        for i in range(maxValue-4, 0, -1):
-            data = getDataFromSite(f'https://www.sports.ru/tribuna/blogs/zina11/{i}.html')
+        for i in range(maxValue-4, maxValue-400, -1):
+            data = getDataFromSport(f'https://www.sports.ru/tribuna/blogs/zina11/{i}.html')
             if data != '':
                 file.write(data)
                 counter200 += 1
